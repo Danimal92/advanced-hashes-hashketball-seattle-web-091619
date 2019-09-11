@@ -200,6 +200,27 @@ return player_number_array
 end
 
 
+def player_stats(name)
+
+hash = game_hash
+hash.each{|team_field,team_info|
+  team_info.each{|team_attribute, values|
+    if team_attribute == :players
+      values.each{|player_hash_array|
+        player_hash_array.each_key{|player_name|
+          index = values.index(player_hash_array)          
+          if name == player_name            
+            return hash[team_field][:players][index][player_name]
+          end          
+        } 
+    }
+    end    
+  }
+}
+
+end
+
+
 
 
 
