@@ -220,6 +220,30 @@ hash.each{|team_field,team_info|
 
 end
 
+def big_shoe_rebounds
+shoe_counter = 0
+rebound_number = 0
+hash = game_hash
+hash.each{|team_field,team_info|
+  team_info.each{|team_attribute, values|
+    if team_attribute == :players
+      values.each{|player_hash_array|
+        player_hash_array.each_key{|player_name|
+          index = values.index(player_hash_array)                 
+              if hash[team_field][:players][index][player_name][:shoe] > shoe_counter
+                shoe_counter = hash[team_field][:players][index][player_name][:shoe]
+                rebound_number = hash[team_field][:players][index][player_name][:rebounds]
+                
+              end
+        } 
+    }
+    end    
+  }
+}
+return rebound_number
+
+end
+
 
 
 
