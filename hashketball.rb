@@ -268,12 +268,36 @@ hash.each{|team_field,team_info|
 }
 return mr_buckets
 
-
-
-
-
 end
 
+def most_points_scored
+home_points = []
+away_points = []
+hash = game_hash
+hash.each{|team_field,team_info|
+  team_info.each{|team_attribute, values|
+    if team_attribute == :players
+      values.each{|player_hash_array|
+        player_hash_array.each_key{|player_name|
+          index = values.index(player_hash_array)
+          if team_field == :home                 
+              home_points << hash[team_field][:players][index][player_name][:points]
+          else
+              away_points << hash[team_field][:players][index][player_name][:points]
+          end
+        } 
+    }
+    end    
+  }
+}
+home = home_points.inject(0){|sum,x| sum + x }
+away = away_points.inject(0){|sum,x| sum + x }
+if home > away
+  return "Brooklyn Nets"
+else
+  return "Charlotte Hornets"
+end
+end
 
 
 
