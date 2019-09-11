@@ -244,7 +244,35 @@ return rebound_number
 
 end
 
+def most_points_scored
+points_counter = 0
+mr_buckets = 0
+hash = game_hash
+hash.each{|team_field,team_info|
+  team_info.each{|team_attribute, values|
+    if team_attribute == :players
+      values.each{|player_hash_array|
+        player_hash_array.each_key{|player_name|
+          index = values.index(player_hash_array)                 
+              if hash[team_field][:players][index][player_name][:points] > points_counter
+                
+                points_counter = hash[team_field][:players][index][player_name][:points]
+                
+                mr_buckets = player_name
+                
+              end
+        } 
+    }
+    end    
+  }
+}
+return mr_buckets
 
+
+
+
+
+end
 
 
 
