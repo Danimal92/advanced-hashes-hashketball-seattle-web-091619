@@ -270,7 +270,7 @@ return mr_buckets
 
 end
 
-def most_points_scored
+def winning_team
 home_points = []
 away_points = []
 hash = game_hash
