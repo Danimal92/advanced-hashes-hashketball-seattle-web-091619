@@ -299,6 +299,27 @@ else
 end
 end
 
+def player_with_longest_name
+
+longest_name = ' '
+hash = game_hash
+hash.each{|team_field,team_info|
+  team_info.each{|team_attribute, values|
+    if team_attribute == :players
+      values.each{|player_hash_array|
+        player_hash_array.each_key{|player_name|
+          index = values.index(player_hash_array)          
+            if player_name.size > longest_name.size        
+              longest_name = player_name
+            end
+        } 
+    }
+    end    
+  }
+}
+return longest_name
+end
+
 
 
 
