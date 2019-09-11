@@ -179,6 +179,25 @@ team_name_array
 
 end
 
+def player_numbers(name)
+player_number_array = []
+hash = game_hash
+hash.each{|team_field,team_info|
+  team_info.each{|team_attribute, values|
+    if team_attribute == :players
+      values.each{|player_hash_array|
+        player_hash_array.each_key{|player_name|
+          index = values.index(player_hash_array)          
+            if hash[team_field][:team_name] == name           
+              player_number_array << hash[team_field][:players][index][player_name][:number]
+            end
+        } 
+    }
+    end    
+  }
+}
+return player_number_array
+end
 
 
 
